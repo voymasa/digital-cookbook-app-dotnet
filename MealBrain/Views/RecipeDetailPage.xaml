@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MealBrain.Views.Components"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="MealBrain.Views.RecipeDetailPage"
+    Title="{Binding Recipes.RecipeName, FallbackValue='New Recipe'}"
+    xmlns:viewmodels="clr-namespace:MealBrain.ViewModels">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Recipe Name -->
+            <Entry Placeholder="Recipe Name"
+                   Text="{Binding Recipes.RecipeName}" />
+
+            <!-- Description -->
+            <Editor Placeholder="Description"
+                    AutoSize="TextChanges"
+                    Text="{Binding Recipes.Description}" />
+
+            <!-- Tags -->
+            <Entry Placeholder="Tags (comma separated)"
+                   Text="{Binding TagsText}" />
+
+            <!-- Image Picker -->
+            <Image Source="{Binding ImageUrl}" 
+                   WidthRequest="128" HeightRequest="128"
+                   Aspect="AspectFill" />
+            <Button Text="Select Image" Command="{Binding PickImageCommand}" />
+
+            <!-- Prep Time, Cook Time, Servings -->
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Prep Time (Min)" FontAttributes="Bold" />
+                <Entry Placeholder="Prep Time (min)" 
+                       Keyboard="Numeric" 
+                       WidthRequest="100"
+                       Text="{Binding Recipes.PrepTime}" />
+                <Label Text="Cook Time (Min)" FontAttributes="Bold" />
+                <Entry Placeholder="Cook Time (min)" 
+                       Keyboard="Numeric" 
+                       WidthRequest="100"
+                       Text="{Binding Recipes.CookTime}" />
+                <Label Text="Servings" FontAttributes="Bold" />
+                <Entry Placeholder="Servings" 
+                       Keyboard="Numeric" 
+                       WidthRequest="100"
+                       Text="{Binding Recipes.Servings}" />
+            </HorizontalStackLayout>
+
+            <!-- Instructions -->
+            <Label Text="Instructions" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding Instructions}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Entry x:Name="InstructionInput" Placeholder="Add instruction..." Text="{Binding NewInstruction}"/>
+            <Button Text="Add Instruction"
+                    Command="{Binding AddInstructionCommand}"
+                    CommandParameter="{Binding Text, Source={x:Reference NewInstruction}}" />
+
+            <!-- Ingredients -->
+            <Label Text="Ingredients" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding Recipes.Ingredients}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <views:IngredientEntryView Margin="10"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!-- Add Ingredient buttons -->
+            <Entry x:Name="IngredientName" Placeholder="Ingredient name" Text="{Binding IngredientNameInput}"/>
+            <Entry x:Name="Quantity" Placeholder="Quantity" Keyboard="Numeric" Text="{Binding QuantityInput}"/>
+           <!-- <Entry x:Name="Measurement" Placeholder="Measurement" Text="{Binding MeasurementInput}"/> -->
+            <Picker x:Name="MeasurementPicker" 
+                    Title="Select Measurement"
+                    ItemsSource="{Binding Measurements}"
+                    SelectedItem="{Binding MeasurementInput}"
+                    ItemDisplayBinding="{Binding Name}" />
+            <Button Text="Add Ingredient"
+                    Command="{Binding AddIngredientCommand}" />
+
+            <!-- Action Buttons -->
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                <Button Text="Save" Command="{Binding SaveCommand}" />
+                <Button Text="Discard" Command="{Binding DeleteCommand}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

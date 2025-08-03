@@ -1,0 +1,56 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealBrain.Views.Components.FlyoutMenuView"
+             x:Name="This"
+             xmlns:vm="clr-namespace:MealBrain.ViewModels.Components">
+
+    <ContentView.BindingContext>
+        <vm:FlyoutMenuViewModel />
+    </ContentView.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <AbsoluteLayout HeightRequest="44"> 
+            <!-- Menu Button -->
+            <Button x:Name="MenuButton" 
+                Text="☰"
+                FontSize="24"
+                WidthRequest="40"
+                HeightRequest="40"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Padding="0"
+                Clicked="OnMenuToggleClicked"
+                Grid.Row="0"/>
+
+            <!-- Navigation Panel -->
+        <Frame x:Name="FlyoutPanel"
+               Grid.Row="1"
+               IsVisible="False"
+               CornerRadius="10"
+               Padding="10"
+               BackgroundColor="#eeeeee"
+               HasShadow="True"
+               Margin="0,5,0,0"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"  
+               AbsoluteLayout.LayoutBounds="0,40,1,-1"
+               AbsoluteLayout.LayoutFlags="WidthProportional"
+               ZIndex="999">
+
+            <VerticalStackLayout Spacing="10">
+
+                <Button Text="Dashboard" Command="{Binding NavigateCommand}" CommandParameter="Dashboard" />
+                <Button Text="Measurement Converter" Command="{Binding NavigateCommand}" CommandParameter="Converter" />
+                <Button Text="User Settings" Command="{Binding NavigateCommand}" CommandParameter="Settings" />
+                <Button Text="Switch User" Command="{Binding NavigateCommand}" CommandParameter="SwitchUser" />
+                <Button Text="Exit" Command="{Binding NavigateCommand}" CommandParameter="Exit" />
+
+            </VerticalStackLayout>
+        </Frame>
+        </AbsoluteLayout>
+    </Grid>
+</ContentView>

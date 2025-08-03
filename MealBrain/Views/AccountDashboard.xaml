@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:components="clr-namespace:MealBrain.Views.Components"
+   x:Class="MealBrain.Views.AccountDashboard"
+   Title="AccountDashboard">
+
+
+    <VerticalStackLayout Padding="10" Spacing="20">
+
+        <!-- Grid for top row -->
+        <Grid VerticalOptions="Center" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Header row -->
+                <RowDefinition Height="Auto"/>
+                <!-- Navigation buttons -->
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <!-- User icon + name -->
+                <ColumnDefinition Width="*" />
+                <!-- Centered label -->
+                <ColumnDefinition Width="*" />
+                <!-- Spacer or empty -->
+            </Grid.ColumnDefinitions>
+
+            <!-- User Info -->
+            <!-- Below is utilizing the flyoutmenu component that does not contain the user info attached to it -->
+            <!--<HorizontalStackLayout Grid.Row="0" Grid.Column="0" Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+                <components:FlyoutMenuView/>
+                <Image Source="{Binding UserIcon}" WidthRequest="40" HeightRequest="40"/>
+                <Label Text="{Binding DisplayName}" VerticalOptions="Center" Margin="10,0,0,0"/>
+            </HorizontalStackLayout>-->
+
+            <!-- Centered Account Dashboard Label -->
+            <!--<Label Grid.Row="0" Grid.Column="1" Text="Account Dashboard"
+                   FontSize="50"
+                   FontAttributes="Bold"
+                   TextColor= "#AC99EA"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />-->
+            <!--<HorizontalStackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">
+                <components:FlyoutMenuViewWithUser/>
+            </HorizontalStackLayout> -->
+
+            <!-- Navigation Buttons -->
+            <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,20,0,0" Spacing="10">
+                <Button Text="Recipes" Clicked="OnRecipesClicked"/>
+                <Button Text="Meal Plans" Clicked="OnMealPlansClicked"/>
+                <Button Text="Grocery Lists" Clicked="OnGroceryListClicked"/>
+            </HorizontalStackLayout>
+
+            <!-- Placeholder Content -->
+            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0">
+                <Label Text="Select a section above to view its content." 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"/>
+            </VerticalStackLayout>
+            </Grid>
+    </VerticalStackLayout>
+</ContentPage>

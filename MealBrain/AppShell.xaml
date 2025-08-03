@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MealBrain.AppShell"
+    xmlns:views="clr-namespace:MealBrain.Views"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MealBrain"
+    Shell.FlyoutBehavior="Flyout"
+    Title="MealBrain">
+
+    <!-- Startup page-->
+    <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" Shell.FlyoutBehavior="Disabled" />
+    <!-- Home with TabBar -->
+    <FlyoutItem Title="Home" Icon="home_icon.png">
+        <ShellContent Title="Dashboard" ContentTemplate="{DataTemplate views:AccountDashboard}" />
+    </FlyoutItem>
+
+    <!-- Other Flyout Items -->
+    <FlyoutItem Title="Measurement Converter" Icon="converter_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:MeasurementConverterPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="User Settings" Icon="settings_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:UserSettingsPage}" />
+    </FlyoutItem>
+
+    <!-- Menu Actions -->
+    <MenuItem Text="Switch User" Clicked="OnSwitchUserClicked" IconImageSource="switch_user_icon.png"/>
+    <MenuItem Text="Exit Application" Clicked="OnExitAppClicked" IconImageSource="exit_icon.png"/>
+
+</Shell>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:MealBrain.Views.Components"
+    x:Class="MealBrain.Views.MeasurementConverterPage"
+    x:Name="MeasurementPage"
+    Title="MeasurementConverter">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" >
+            <Setter Property="Margin" Value="8,8" />
+            <Setter Property="MinimumHeightRequest" Value="50" />
+            <Setter Property="MinimumWidthRequest" Value="150" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Fill">
+                <Label Text="Initial Amount: " />
+                <Border Stroke="DarkGray" Margin="8,8">
+                    <Entry Placeholder="Amount to convert" 
+                        Text="{Binding InitialAmount}" 
+                        MinimumWidthRequest="150" MinimumHeightRequest="50" />
+                </Border>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Fill">
+                <Label Text="Measurement From: " />
+                <Picker x:Name="MeasurementFromPicker" 
+                    Title="Choose starting measurement type"
+                    ItemsSource="{Binding Measurements}" 
+                    SelectedItem="{Binding MeasurementFrom}" 
+                    Margin="8,8" MinimumHeightRequest="50"
+                    ItemDisplayBinding="{Binding Name}" 
+                    SelectedIndexChanged="MeasurementFromPicker_SelectedIndexChanged" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Fill">
+                <Label Text="Measurement To: " />
+                <Picker x:Name="MeasurementToPicker" 
+                    Title="Choose target measurement type"
+                    ItemsSource="{Binding Measurements}" 
+                    SelectedItem="{Binding MeasurementTo}"
+                    Margin="8,8" MinimumHeightRequest="50" 
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedIndexChanged="MeasurementToPicker_SelectedIndexChanged" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Fill">
+                <Label Text="Amount: " />
+                <Border Stroke="DarkGray" Margin="8,8" >
+                    <Entry Placeholder="0" IsReadOnly="True"
+                        Text="{Binding ConvertedAmount, Mode=OneWay}"
+                        MinimumWidthRequest="150" MinimumHeightRequest="50" />
+                </Border>
+            </HorizontalStackLayout>
+            <!-- Button Panel -->
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,16">
+                <Button Text="Calculate" Command="{Binding CalculateCommand}" />
+            </StackLayout>
+            <Label Text="{Binding Notification}" TextColor="Red" />
+            <Image Source="measuring_cup_modified.png" Background="Transparent" MinimumWidthRequest="100" MaximumWidthRequest="256"/>
+        </StackLayout>
+    </ScrollView>
+
+
+</ContentPage>

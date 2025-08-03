@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MealBrain.Views.RecipeListPage"
+    Title="Recipes">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, *" Padding="16" RowSpacing="16">
+            <VerticalStackLayout Padding="16" Spacing="16">
+                <!-- Add Recipe Button -->
+                <Button Text="Add New Recipe"
+                    x:Name="AddRecipeButton"
+                    Clicked="OnAddRecipeClicked"
+                    HorizontalOptions="End" />
+
+                <!-- Filter Controls -->
+                <Frame BorderColor="LightGray" CornerRadius="8" Padding="12" Margin="0,0,0,8">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Filter Recipes" FontAttributes="Bold" />
+                        <HorizontalStackLayout Spacing="8">
+                            <Entry x:Name="FilterTextEntry" 
+                               Placeholder="Filter by name or ingredient..." 
+                               WidthRequest="200"
+                               Text="{Binding SearchText}" />
+                            <!-- <CheckBox x:Name="FilterByNameCheckBox" 
+                                 IsChecked="{Binding FilterByName}" />
+                        <Label Text="Name" VerticalOptions="Center" />
+                        <CheckBox x:Name="FilterByIngredientCheckBox" 
+                                 IsChecked="{Binding FilterByIngredient}" />
+                        <Label Text="Ingredient" VerticalOptions="Center" /> -->
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="Tags:" VerticalOptions="Center" />
+                            <Picker x:Name="TagPicker" Title="Select Tag(s)" WidthRequest="150" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Recipe Cards Grid -->
+
+                <CollectionView x:Name="RecipeCollectionView"
+                            ItemsSource="{Binding Recipes}" VerticalScrollBarVisibility="Always" HeightRequest="700">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                 Span="8"
+                                 VerticalItemSpacing="16"
+                                 HorizontalItemSpacing="8" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource CardStyle}"
+                               WidthRequest="160"
+                               HeightRequest="200"
+                               Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CardTappedCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="2">
+                                    <Image Source="{Binding ImageUrl}" 
+                                       WidthRequest="120" 
+                                       HeightRequest="80" 
+                                       Aspect="AspectFill" 
+                                       BackgroundColor="LightGray" />
+
+                                    <Label Text="{Binding RecipeName}" 
+                                       TextColor="#AC99EA"
+                                       FontAttributes="Bold" 
+                                       HorizontalOptions="Center" 
+                                       FontSize="14" 
+                                       LineBreakMode="TailTruncation" />
+
+                                    <VerticalStackLayout Spacing="2">
+                                        <Label Text="{Binding PreparationTime, StringFormat='⏱️ {0} min'}" 
+                                           FontSize="11"
+                                           TextColor="#7F8C8D"
+                                           HorizontalOptions="Center" />
+                                        <Label Text="{Binding CookingTime, StringFormat='🔥 {0} min'}" 
+                                           FontSize="11"
+                                           TextColor="#7F8C8D"
+                                           HorizontalOptions="Center" />
+                                        <Label Text="{Binding Servings, StringFormat='👥 {0} servings'}" 
+                                           FontSize="11"
+                                           TextColor="#7F8C8D"
+                                           HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+
+                                    <Button Text="🗑️" 
+                                       BackgroundColor="Transparent"
+                                       TextColor="#E74C3C"
+                                       FontSize="16"
+                                       WidthRequest="32"
+                                       HeightRequest="32"
+                                       CornerRadius="16"
+                                       Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteRecipeCommand}"
+                                       CommandParameter="{Binding .}" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

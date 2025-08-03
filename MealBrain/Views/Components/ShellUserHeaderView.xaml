@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MealBrain.Views.Components.ShellUserHeaderView">
+    <HorizontalStackLayout Spacing="10" Padding="10,0,0,0">
+        <Image Source="{Binding UserIcon}" WidthRequest="32" HeightRequest="32" Aspect="AspectFill">
+            <Image.Clip>
+                <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16"/>
+            </Image.Clip>
+        </Image>
+        <Label Text="{Binding DisplayName}" VerticalOptions="Center" FontAttributes="Bold"/>
+    </HorizontalStackLayout>
+</ContentView>

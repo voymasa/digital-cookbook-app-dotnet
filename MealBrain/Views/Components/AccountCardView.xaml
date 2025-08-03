@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MealBrain.Views.Components.AccountCardView">
+
+    <Frame 
+        x:Name="MyCardFrame"
+        Style="{StaticResource CardStyle}"
+        CornerRadius="20" 
+        Padding="10" 
+        BackgroundColor="White"
+        WidthRequest="130" 
+        HeightRequest="180"
+        HasShadow="True">
+
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding CardTappedCommand}" />
+        </Frame.GestureRecognizers>
+
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+            <Image 
+                Source="{Binding ImagePath}" 
+                WidthRequest="80" 
+                HeightRequest="80" 
+                Aspect="AspectFill" 
+                BackgroundColor="LightGray">
+
+                <Image.Clip>
+                    <EllipseGeometry Center="40,40" RadiusX="40" RadiusY="40"/>
+                </Image.Clip>
+
+            </Image>
+
+            <Label 
+                Text="{Binding DisplayName}" 
+                TextColor="#AC99EA"
+                FontAttributes="Bold" 
+                HorizontalOptions="Center" 
+                FontSize="14" 
+                LineBreakMode="TailTruncation"/>
+        </VerticalStackLayout>
+
+    </Frame>
+</ContentView>

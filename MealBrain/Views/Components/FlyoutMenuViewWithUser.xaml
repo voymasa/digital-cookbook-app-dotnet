@@ -1,0 +1,80 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealBrain.Views.Components.FlyoutMenuViewWithUser"
+             x:Name="This"
+             xmlns:vm="clr-namespace:MealBrain.ViewModels.Components">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <AbsoluteLayout HeightRequest="300">
+
+        <HorizontalStackLayout Grid.Row="0"
+                               Padding="10"
+                               Spacing="15"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand">
+            <!-- Menu Button -->
+            <Button x:Name="MenuButton" 
+                Text="☰"
+                FontSize="24"
+                WidthRequest="40"
+                HeightRequest="40"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Padding="0"
+                Clicked="OnMenuToggleClicked"
+                Grid.Row="0"/>
+
+                <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="EndAndExpand"
+                         VerticalOptions="Center"
+                         Spacing="10">
+                    <!-- User Image -->
+                    <Image Source="{Binding UserIcon}"
+                       WidthRequest="40"
+                       HeightRequest="40"
+                       Aspect="AspectFill">
+                        <Image.Clip>
+                            <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20"/>
+                        </Image.Clip>
+                    </Image>
+
+                    <!-- User Name -->
+                    <Label Text="{Binding DisplayName}"
+                       VerticalOptions="Center"
+                       FontSize="14"
+                       FontAttributes="Bold" />
+                </StackLayout>
+            </HorizontalStackLayout>
+
+            <!-- Navigation Panel -->
+            <Frame x:Name="FlyoutPanel"
+               
+               IsVisible="False"
+               CornerRadius="10"
+               Padding="10"
+               BackgroundColor="#eeeeee"
+               HasShadow="True"
+               Margin="0,5,0,0"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"  
+               AbsoluteLayout.LayoutBounds="0,60,1,-1"
+               AbsoluteLayout.LayoutFlags="WidthProportional"
+               ZIndex="999">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Button Text="Dashboard" Command="{Binding NavigateCommand}" CommandParameter="Dashboard" />
+                    <Button Text="Measurement Converter" Command="{Binding NavigateCommand}" CommandParameter="Converter" />
+                    <Button Text="User Settings" Command="{Binding NavigateCommand}" CommandParameter="Settings" />
+                    <Button Text="Switch User" Command="{Binding NavigateCommand}" CommandParameter="SwitchUser" />
+                    <Button Text="Exit" Command="{Binding NavigateCommand}" CommandParameter="Exit" />
+
+                </VerticalStackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </Grid>
+</ContentView>
