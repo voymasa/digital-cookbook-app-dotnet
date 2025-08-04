@@ -3,7 +3,19 @@
 This is the team repository for SU25_Team5.
 
 ## Personal Retrospective
+As the team manager and lead I had to balance betweeen designing the system and leading people with different skill levels, viewpoints, and priorities.
+I created a minimal app skeleton, i.e. I added classes in support of the architecture and design but didn't provide implementations for most of them, in
+order to give my team an opportunity to learn because this is an academic setting. I knew that it would be challenging to touch a tech stack that they
+likely had little experience with, and learning a design pattern (MVVM) that they likely had not used before.
+While I pivoted many times to adapt to team skill and knowledge limitations, including that I reduced the scope of tickets and made them much smaller, it
+would have been better if I had planned the work to start with completely decomposed features and built on them iteratively, ex. make a name field work end-to-end,
+then add a description field, and so on.
 
+Where I could have done better is scheduling a 1 to 1 with each team member during the first weeks of the project in order to observe and feel out their
+strengths, weaknesses, and proclivities, and to give them an opportunity to ask questions directly. From this I could have better balanced giving them a challenge
+and opportunity to grow in an academic setting, with moving the project forward by cultivating their strengths.
+Another area I could have done better is focusing on decomposition of features and iterating on them; it is better to have 5 fields that fully work than 10 fields
+that only work partially or not at all.
 
 ## Project
 
